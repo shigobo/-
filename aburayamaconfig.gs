@@ -32,6 +32,35 @@ const CONFIG = {
     'userMasterACGDB': {'id': '1BGiq6JgHsX0HQD5DpEDVucon92OiCGHCkvsu6ASQyCQ'},//ACGデータベースID
     'calcForPaidMaster': {'id': '1wDP-1sPyaXESEOoQ1dtCzZC1VhpGdnDSWIYzRSrVE6U'},//利用料計算ツールマスタID
   },
+  /**
+   * 油山Aタイプ旧価格適用の白名单設定
+   *
+   * 背景：油山Aタイプの価格改定に伴い、既存住户は旧価格を継続適用する必要がある
+   *
+   * 設定項目：
+   *   facilityName: 対象施設名
+   *   currentInvoiceKbn: マスタ上の新価格の請求区分名
+   *   legacyInvoiceKbn: マスタ上の旧価格の請求区分名
+   *   whitelistIds: 旧価格を適用する利用者のあおぞらID配列
+   *
+   * 運用：
+   *   - 価格改定時に既存の油山A利用者IDをwhitelistIdsに追加する
+   *   - 新規入居者はwhitelistIdsに追加しない（新価格が適用される）
+   *   - 退去者のIDは残しても問題ない（対象外となる）
+   */
+  'aburayamaLegacyPrice': {
+    'facilityName': '油山',
+    'currentInvoiceKbn': '有料老人ホーム油山A',
+    'legacyInvoiceKbn': '有料老人ホーム油山旧A',
+    'whitelistIds': [
+      // 2025/12/19以前に油山Aタイプに入居していた旧利用者（39名）
+      '2282', '3491', '8176', '8235', '8268', '8286', '8295', '8298',
+      '8327', '8335', '8338', '8347', '8348', '8349', '8350', '8352',
+      '8354', '8368', '8375', '8377', '8380', '8381', '8383', '8397',
+      '8404', '8413', '8425', '8430', '8441', '8442', '8450', '8473',
+      '8483', '8505', '8507', '8528', '8531', '8532', '8566','8262','8591'
+    ],
+  },
   'facilityList': {
     '永吉': {
       'ss': {'id': '1gnE_N7qrVs9RQQUEyzuFaRMgNTh7dKIoNKjOUhfB16Q'},
